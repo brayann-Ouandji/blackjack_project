@@ -1,0 +1,7 @@
+# Mêmes versions que lab05/requirements-lab05.txt du cours (venv .venv partagé)
+torch>=2.3,<3
+ultralytics>=8.3,<9
+opencv-python>=4.8,<5
+Pillow>=10,<13
+numpy
+matplotlib

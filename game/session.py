@@ -1,0 +1,34 @@
+"""Relie détections -> état de jeu -> décision de l'agent RL."""
+from dataclasses import dataclass
+from rl.env import card_value, hand_total, outcome_solo, HIT
+import config
+
+@dataclass
+class Decision:
+    status: str            # 'hidden' | 'wait' | 'playing' | 'over'
+    text: str
+    total: int = 0
+
+def split_zones(valid, frame_h):
+    """Banquier = moitié haute de l'image, joueur = moitié basse (si DEALER_MODE)."""
+    top = [d for d in valid if (d.box[1] + d.box[3]) / 2 < frame_h / 2]
+    return top, [d for d in valid if d not in top]
+
+def decide(agent, analysis, confirmed_labels, frame_h=None, dealer_labels=None):
+    if analysis.message:
+        return Decision("hidden", analysis.message)
+    if not confirmed_labels:
+        return Decision("wait", "Posez vos cartes")
+    values = [card_value(l) for l in confirmed_labels]
+    total, soft = hand_total(values)
+    res = outcome_solo(values)
+    if res:
+        return Decision("over", res, total)
+    if config.DEALER_MODE:
+        if not dealer_labels:
+            return Decision("wait", "Posez la carte du banquier (moitié haute)", total)
+        state = (total, soft, card_value(dealer_labels[0]))
+    else:
+        state = (total, soft)
+    action = "TIRER" if agent.act(state, greedy=True) == HIT else "RESTER"
+    return Decision("playing", f"Total {total} -> {action}", total)

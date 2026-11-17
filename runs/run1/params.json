@@ -1,0 +1,11 @@
+{
+  "name": "run1",
+  "episodes": 5000,
+  "alpha": 0.05,
+  "eps": 0.1,
+  "eps_decay": 1.0,
+  "eps_min": 0.01,
+  "block": 500,
+  "dealer": false,
+  "seed": 0
+}
