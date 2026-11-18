@@ -1,11 +1,12 @@
 RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-# Index 0 = 'none' (inutilisé), 1 = 'A', 2 = '2', ..., 13 = 'K', 14 = 'hidden
 # Classes YOLO : 13 rangs + 'hidden' (carte vue mais illisible/couverte, étiquetée à la main)
-VISION_CLASSES = ["none"] + RANKS + ["hidden"]
+VISION_CLASSES = RANKS + ["hidden"]   # index 0 = A ... 12 = K, 13 = hidden (ordre exporté par CVAT)
 HIDDEN = "hidden"
 
 
 # Vision
+CORNER_MODE = True        # dataset étiqueté sur les COINS (4 par carte) : une carte = 4 détections du même rang
+CORNERS_PER_CARD = 4
 MIN_CONF = 0.50          # en dessous : carte considérée illisible -> "carte cachée"
 OVERLAP_THR = 0.15       # part de la plus petite boîte recouverte par une autre
 EDGE_MARGIN = 5          # px : carte collée au bord de l'image = coupée
