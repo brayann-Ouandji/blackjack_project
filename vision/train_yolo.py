@@ -18,14 +18,14 @@ def write_yaml(root, train, val):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--name", required=True); p.add_argument("--model", default="yolo11n.pt")
-    p.add_argument("--epochs", type=int, default=30); p.add_argument("--imgsz", type=int, default=416)
+    p.add_argument("--epochs", type=int, default=30); p.add_argument("--imgsz", type=int, default=416); p.add_argument("--mosaic", type=float, default=0.0)
     p.add_argument("--batch", type=int, default=4); p.add_argument("--device", default="cpu")
     p.add_argument("--root", default="data/dataset"); p.add_argument("--train", default="images/train")
     p.add_argument("--val", default="images/val")
     a = p.parse_args()
     from ultralytics import YOLO
     YOLO(a.model).train(data=write_yaml(a.root, a.train, a.val), epochs=a.epochs, imgsz=a.imgsz,
-                        batch=a.batch, device=a.device, name=a.name, project="runs/detect")
+                        mosaic=a.mosaic, batch=a.batch, device=a.device, name=a.name, project="runs/vision_logs")
     os.makedirs("runs/vision_logs", exist_ok=True)
     json.dump(vars(a), open(f"runs/vision_logs/{a.name}.json", "w"), indent=2)
 
