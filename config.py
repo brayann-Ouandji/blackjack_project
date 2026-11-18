@@ -1,8 +1,9 @@
-
 RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+# Index 0 = 'none' (inutilisé), 1 = 'A', 2 = '2', ..., 13 = 'K', 14 = 'hidden
 # Classes YOLO : 13 rangs + 'hidden' (carte vue mais illisible/couverte, étiquetée à la main)
-VISION_CLASSES = RANKS + ["hidden"]
+VISION_CLASSES = ["none"] + RANKS + ["hidden"]
 HIDDEN = "hidden"
+
 
 # Vision
 MIN_CONF = 0.50          # en dessous : carte considérée illisible -> "carte cachée"

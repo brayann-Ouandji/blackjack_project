@@ -25,7 +25,7 @@ def main():
     a = p.parse_args()
     from ultralytics import YOLO
     YOLO(a.model).train(data=write_yaml(a.root, a.train, a.val), epochs=a.epochs, imgsz=a.imgsz,
-                        mosaic=a.mosaic, batch=a.batch, device=a.device, name=a.name, project="runs/vision_logs")
+                        mosaic=a.mosaic, fliplr=0.0, batch=a.batch, device=a.device, name=a.name, project="runs/vision_logs")
     os.makedirs("runs/vision_logs", exist_ok=True)
     json.dump(vars(a), open(f"runs/vision_logs/{a.name}.json", "w"), indent=2)
 
