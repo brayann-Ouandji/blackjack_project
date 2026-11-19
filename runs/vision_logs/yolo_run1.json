@@ -1,9 +1,10 @@
 {
   "name": "yolo_run1",
   "model": "yolo11n.pt",
-  "epochs": 30,
+  "epochs": 40,
   "imgsz": 416,
   "mosaic": 0.0,
+  "degrees": 45.0,
   "batch": 4,
   "device": "cpu",
   "root": "data/dataset",
