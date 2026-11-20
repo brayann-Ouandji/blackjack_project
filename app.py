@@ -37,7 +37,7 @@ def main():
             cards = cards_from_corners([d.label for d in an.valid])[0] if config.CORNER_MODE else [d.label for d in an.valid]
             tracker.update([c for c in cards for _ in range(config.CORNERS_PER_CARD)] if config.CORNER_MODE else cards)
             dl = None
-        # if config.DEALER_MODE:
+        # if config.DEALER_MODE: #le mode avec banquier on a annulé car ça bug trop
         #     dealer, player = split_zones(an.valid, h)
         #     tracker.update([d.label for d in player]); dl = sorted(d.label for d in dealer)
         # else:

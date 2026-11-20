@@ -52,16 +52,6 @@ def test_decision_flow():
     d = decide(ag, ok, C("K", "A"))                                  # affichage = rangs, logique = valeurs
     assert d.faces == "A K" and d.total == 21 and d.status == "over"
 
-# # def test_cards_from_corners():
-# #     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
-# #     assert cards_from_corners(["7"] * 3)[1] is True and cards_from_corners(["7"] * 5)[1] is True
-
-# # def test_cards_from_corners():
-# #     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
-# #     assert cards_from_corners(["7"]) == (["7"], False)
-# #     assert cards_from_corners(["7"] * 3) == (["7"], False)
-# #     assert cards_from_corners(["7"] * 5) == (["7", "7"], False)
-
 
 def test_cards_from_corners():
     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
@@ -70,7 +60,7 @@ def test_cards_from_corners():
     assert cards_from_corners(["7"] * 3) == (["7"], False)
     assert cards_from_corners(["7"] * 5) == (["7", "7"], False)
 
-# def test_cards_from_corners():
+# def test_cards_from_corners(): # cas de test pour le ban quier annulé aussi
 #     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
 #     assert cards_from_corners(["7"]) == ([], False)              # 1 coin isolé = ignoré
 #     assert cards_from_corners(["7"] * 2) == (["7"], False)       # 2 à 5 coins = 1 carte
