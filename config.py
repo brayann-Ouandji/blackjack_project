@@ -7,11 +7,11 @@ HIDDEN = "hidden"
 # Vision
 CORNER_MODE = True        # dataset étiqueté sur les COINS (4 par carte) : une carte = 4 détections du même rang
 CORNERS_PER_CARD = 4
-MIN_CONF = 0.50          # en dessous : carte considérée illisible -> "carte cachée"
+MIN_CONF = 0.65          # en dessous : carte considérée illisible -> "carte cachée"
 OVERLAP_THR = 0.15       # part de la plus petite boîte recouverte par une autre
-EDGE_MARGIN = 5          # px : carte collée au bord de l'image = coupée
-STABLE_FRAMES = 8        # fenêtre de vote temporel
-STABLE_RATIO = 0.7       # part des frames où le même compte doit apparaître
+EDGE_MARGIN = 0          # px : carte collée au bord de l'image = coupée
+STABLE_FRAMES = 10        # fenêtre de vote temporel
+STABLE_RATIO = 0.8       # part des frames où le même compte doit apparaître
 MSG_HIDDEN = "Carte cachée - séparez les cartes"
 
 # Jeu

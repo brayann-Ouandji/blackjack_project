@@ -48,20 +48,34 @@ def test_decision_flow():
     bad = analyse([Det("2", .2, (10, 10, 60, 90))], (480, 640))
     assert decide(ag, bad, C("2")).status == "hidden"
     assert decide(ag, ok, C("10", "6", "8")).status == "over"
-    #assert decide(ag, ok, C("2") + ["K", "K", "K"]).status == "hidden"   # un coin du K manque
     assert decide(ag, ok, C("2") + ["K", "K", "K"]).status == "playing"
-    d = decide(ag, ok, C("K", "A"))                      # affichage = rangs, logique = valeurs
+    d = decide(ag, ok, C("K", "A"))                                  # affichage = rangs, logique = valeurs
     assert d.faces == "A K" and d.total == 21 and d.status == "over"
 
-# def test_cards_from_corners():
-#     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
-#     assert cards_from_corners(["7"] * 3)[1] is True and cards_from_corners(["7"] * 5)[1] is True
+# # def test_cards_from_corners():
+# #     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
+# #     assert cards_from_corners(["7"] * 3)[1] is True and cards_from_corners(["7"] * 5)[1] is True
+
+# # def test_cards_from_corners():
+# #     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
+# #     assert cards_from_corners(["7"]) == (["7"], False)
+# #     assert cards_from_corners(["7"] * 3) == (["7"], False)
+# #     assert cards_from_corners(["7"] * 5) == (["7", "7"], False)
+
 
 def test_cards_from_corners():
     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
-    assert cards_from_corners(["7"]) == (["7"], False)
+    assert cards_from_corners(["7"]) == ([], False)          # 1 coin isolé = ignoré
+    assert cards_from_corners(["7"] * 2) == (["7"], False)   # dès 2 coins = 1 carte
     assert cards_from_corners(["7"] * 3) == (["7"], False)
     assert cards_from_corners(["7"] * 5) == (["7", "7"], False)
+
+# def test_cards_from_corners():
+#     assert cards_from_corners(["7"] * 4 + ["K"] * 8) == (["7", "K", "K"], False)
+#     assert cards_from_corners(["7"]) == ([], False)              # 1 coin isolé = ignoré
+#     assert cards_from_corners(["7"] * 2) == (["7"], False)       # 2 à 5 coins = 1 carte
+#     assert cards_from_corners(["7"] * 5) == (["7"], False)       # 5e coin (faux positif) = toujours 1 carte
+#     assert cards_from_corners(["7"] * 6) == (["7", "7"], False)  # dès 6 coins = 2 cartes
 
 if __name__ == "__main__":
     for n, f in list(globals().items()):
